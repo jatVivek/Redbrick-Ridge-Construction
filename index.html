@@ -813,6 +813,12 @@
                 <input id="cfgEmail" type="email" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
               </div>
 
+              <div class="sm:col-span-2 p-3.5 bg-slate-100 rounded-xl border border-slate-300/80">
+                <label class="block text-xs font-bold text-slate-900 mb-1">Backend API Base URL (Dynamic)</label>
+                <p class="text-[11px] text-slate-500 mb-2">Leave blank to auto-detect (<code class="font-mono">http://localhost:3001</code> on local, or relative/offline fallback). When deploying backend to Render, Railway, or VPS, paste the URL here (e.g. <code class="font-mono">https://my-api.onrender.com</code>).</p>
+                <input id="cfgApiBase" type="url" placeholder="Auto-detected (or e.g. https://api.mysite.com)" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm font-mono bg-white" />
+              </div>
+
               <!-- Trade-Ready Accent Swatches + Custom Color Picker -->
               <div class="sm:col-span-2">
                 <label class="block text-xs font-bold text-slate-700 mb-2">Brand Accent Colour (Trade Swatches or Custom)</label>
@@ -923,15 +929,55 @@
           rating: 5,
           text: "Great communication throughout, handled the structural steelwork smoothly, and left our open-plan kitchen ready for fit-out."
         }
-      ]
+      ],
+      apiBase: ""
     };
+
+    /**
+     * DYNAMIC API BASE URL MANAGEMENT
+     * Resolves API base in priority order:
+     * 1. Window runtime config: window.APP_CONFIG?.apiBase
+     * 2. Saved brand config: activeConfig.apiBase
+     * 3. Localhost development: http://localhost:3001
+     * 4. Production default: "" (relative /api paths or client fallback)
+     */
+    function getApiBase() {
+      if (typeof window !== "undefined" && window.APP_CONFIG && window.APP_CONFIG.apiBase) {
+        return window.APP_CONFIG.apiBase.replace(/\/+$/, "");
+      }
+      if (activeConfig && activeConfig.apiBase && typeof activeConfig.apiBase === "string" && activeConfig.apiBase.trim()) {
+        return activeConfig.apiBase.trim().replace(/\/+$/, "");
+      }
+      if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
+        return "http://localhost:3001";
+      }
+      return "";
+    }
 
     const STORAGE_KEYS = {
       BRAND: "uk_builder_brand_config_v1",
-      ENQUIRIES: "uk_builder_enquiries_v1"
+      ENQUIRIES: "uk_builder_enquiries_v1",
+      AUTH: "uk_builder_owner_token"
     };
 
-    const OWNER_PIN = "2468";
+    const FALLBACK_OWNER_PIN = "2468";
+
+    function getAuthToken() {
+      return sessionStorage.getItem(STORAGE_KEYS.AUTH);
+    }
+
+    function authHeaders() {
+      const token = getAuthToken();
+      return token ? { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" } : { "Content-Type": "application/json" };
+    }
+
+    function handleUnauthorized() {
+      sessionStorage.removeItem(STORAGE_KEYS.AUTH);
+      isOwnerUnlocked = false;
+      document.getElementById("ownerPinGate").classList.remove("hidden");
+      document.getElementById("ownerWorkspace").classList.add("hidden");
+      showToast("Session expired — please re-enter PIN");
+    }
 
     // UK Trade & Project Showcase Catalog
     const PROJECT_CATALOG = [
@@ -1550,23 +1596,14 @@
       enquiries.unshift(newLead);
       localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(enquiries));
 
-      // Attempt async sync to MySQL API
-      fetch("/api/enquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: newLead.id,
-          name: newLead.name,
-          phone: newLead.phone,
-          email: "",
-          postcode: newLead.postcode,
-          projectType: `${newLead.tradeLabel} (${newLead.propertyType})`,
-          budgetBand: newLead.budgetRange,
-          visitPref: newLead.visitPref,
-          notes: `Plans: ${newLead.planStatus} | Timeline: ${newLead.timeline} | Notes: ${newLead.notes}`,
-          status: newLead.status
-        })
-      }).catch(err => console.log("MySQL sync skipped or offline:", err.message));
+      const apiBase = getApiBase();
+      if (apiBase) {
+        fetch(`${apiBase}/api/enquiries`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newLead)
+        }).catch(err => console.log("API sync skipped or offline:", err.message));
+      }
 
       showToast("Saved to Site Survey Queue & opening WhatsApp...");
 
@@ -1629,9 +1666,34 @@
       document.getElementById("pinErrorMsg").classList.add("hidden");
     }
 
-    function verifyOwnerPin() {
+    async function verifyOwnerPin() {
       const val = document.getElementById("ownerPinInput").value.trim();
-      if (val === OWNER_PIN) {
+      let loggedIn = false;
+      const apiBase = getApiBase();
+
+      if (apiBase) {
+        try {
+          const resp = await fetch(`${apiBase}/api/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ pin: val })
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            sessionStorage.setItem(STORAGE_KEYS.AUTH, data.token);
+            loggedIn = true;
+          }
+        } catch (e) {
+          // Fall through to local fallback
+        }
+      }
+
+      if (!loggedIn && val === FALLBACK_OWNER_PIN) {
+        sessionStorage.setItem(STORAGE_KEYS.AUTH, "local_session_token");
+        loggedIn = true;
+      }
+
+      if (loggedIn) {
         isOwnerUnlocked = true;
         showOwnerWorkspace();
       } else {
@@ -1725,23 +1787,27 @@
     }
 
     async function syncEnquiriesFromDatabase() {
+      const apiBase = getApiBase();
+      if (!apiBase) return;
       try {
-        const res = await fetch("/api/enquiries");
+        const res = await fetch(`${apiBase}/api/enquiries`, { headers: authHeaders() });
+        if (res.status === 401) { handleUnauthorized(); return; }
         if (res.ok) {
           const json = await res.json();
-          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-            const mapped = json.data.map(item => ({
+          const items = json.enquiries || json.data;
+          if (Array.isArray(items) && items.length > 0) {
+            const mapped = items.map(item => ({
               id: item.id,
-              createdAt: new Date(item.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+              createdAt: item.createdAt ? new Date(item.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "Today",
               name: item.name,
               phone: item.phone,
               postcode: item.postcode,
-              tradeLabel: item.projectType || "General Construction",
-              propertyType: "Project Site",
-              scaleLabel: "Standard",
-              planStatus: "On File",
-              timeline: "Normal",
-              budgetRange: item.budgetBand || "To Quote",
+              tradeLabel: item.tradeLabel || "General Construction",
+              propertyType: item.propertyType || "Residential",
+              scaleLabel: item.scaleLabel || "Standard",
+              planStatus: item.planStatus || "On File",
+              timeline: item.timeline || "Flexible",
+              budgetRange: item.budgetRange || "To Quote",
               visitPref: item.visitPref || "Flexible",
               notes: item.notes || "",
               status: item.status || "New Enquiry"
@@ -1828,11 +1894,14 @@
         renderSurveyQueue();
         showToast(`Lead marked as "${newStatus}".`);
 
-        fetch("/api/enquiries", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id, status: newStatus })
-        }).catch(err => console.log("DB status update error:", err));
+        const apiBase = getApiBase();
+        if (apiBase) {
+          fetch(`${apiBase}/api/enquiries/${encodeURIComponent(id)}/status`, {
+            method: "PATCH",
+            headers: authHeaders(),
+            body: JSON.stringify({ status: newStatus })
+          }).catch(err => console.log("DB status update error:", err));
+        }
       }
     }
 
@@ -1842,9 +1911,13 @@
       renderSurveyQueue();
       showToast("Enquiry removed from queue.");
 
-      fetch(`/api/enquiries?id=${encodeURIComponent(id)}`, {
-        method: "DELETE"
-      }).catch(err => console.log("DB delete error:", err));
+      const apiBase = getApiBase();
+      if (apiBase) {
+        fetch(`${apiBase}/api/enquiries/${encodeURIComponent(id)}`, {
+          method: "DELETE",
+          headers: authHeaders()
+        }).catch(err => console.log("DB delete error:", err));
+      }
     }
 
     // Tab B: Quick-Brand Customizer Logic
@@ -1857,6 +1930,7 @@
       document.getElementById("cfgLogoUrl").value = activeConfig.logoUrl || "";
       document.getElementById("cfgServiceAreas").value = activeConfig.serviceAreas || "";
       document.getElementById("cfgEmail").value = activeConfig.email || "";
+      document.getElementById("cfgApiBase").value = activeConfig.apiBase || "";
       document.getElementById("cfgAccentColor").value = activeConfig.accentColor || "#D97706";
       document.getElementById("cfgStoryTitle").value = activeConfig.brandStoryTitle || "";
       document.getElementById("cfgStoryBody").value = activeConfig.brandStoryBody || "";
@@ -1889,12 +1963,23 @@
         logoUrl: document.getElementById("cfgLogoUrl").value.trim(),
         serviceAreas: document.getElementById("cfgServiceAreas").value.trim() || DEFAULT_BRAND_CONFIG.serviceAreas,
         email: document.getElementById("cfgEmail").value.trim() || DEFAULT_BRAND_CONFIG.email,
+        apiBase: document.getElementById("cfgApiBase").value.trim(),
         accentColor: document.getElementById("cfgAccentColor").value || DEFAULT_BRAND_CONFIG.accentColor,
         brandStoryTitle: document.getElementById("cfgStoryTitle").value.trim() || DEFAULT_BRAND_CONFIG.brandStoryTitle,
         brandStoryBody: document.getElementById("cfgStoryBody").value.trim() || DEFAULT_BRAND_CONFIG.brandStoryBody
       };
 
       localStorage.setItem(STORAGE_KEYS.BRAND, JSON.stringify(activeConfig));
+
+      const apiBase = getApiBase();
+      if (apiBase) {
+        fetch(`${apiBase}/api/brand`, {
+          method: "PUT",
+          headers: authHeaders(),
+          body: JSON.stringify(activeConfig)
+        }).catch(err => console.log("Backend brand sync skipped:", err));
+      }
+
       applyBrandConfigToDOM();
       showToast(`Brand updated to "${activeConfig.companyName}"!`);
     }
