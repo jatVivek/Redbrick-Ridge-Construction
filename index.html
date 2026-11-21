@@ -1550,6 +1550,24 @@
       enquiries.unshift(newLead);
       localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(enquiries));
 
+      // Attempt async sync to MySQL API
+      fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: newLead.id,
+          name: newLead.name,
+          phone: newLead.phone,
+          email: "",
+          postcode: newLead.postcode,
+          projectType: `${newLead.tradeLabel} (${newLead.propertyType})`,
+          budgetBand: newLead.budgetRange,
+          visitPref: newLead.visitPref,
+          notes: `Plans: ${newLead.planStatus} | Timeline: ${newLead.timeline} | Notes: ${newLead.notes}`,
+          status: newLead.status
+        })
+      }).catch(err => console.log("MySQL sync skipped or offline:", err.message));
+
       showToast("Saved to Site Survey Queue & opening WhatsApp...");
 
       const cleanPhone = (activeConfig.whatsappNumber || "447700900618").replace(/\D/g, "");
@@ -1626,6 +1644,7 @@
       document.getElementById("ownerPinGate").classList.add("hidden");
       document.getElementById("ownerWorkspace").classList.remove("hidden");
       renderSurveyQueue();
+      syncEnquiriesFromDatabase();
       populateBrandCustomizerForm();
     }
 
@@ -1705,6 +1724,37 @@
       }
     }
 
+    async function syncEnquiriesFromDatabase() {
+      try {
+        const res = await fetch("/api/enquiries");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+            const mapped = json.data.map(item => ({
+              id: item.id,
+              createdAt: new Date(item.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+              name: item.name,
+              phone: item.phone,
+              postcode: item.postcode,
+              tradeLabel: item.projectType || "General Construction",
+              propertyType: "Project Site",
+              scaleLabel: "Standard",
+              planStatus: "On File",
+              timeline: "Normal",
+              budgetRange: item.budgetBand || "To Quote",
+              visitPref: item.visitPref || "Flexible",
+              notes: item.notes || "",
+              status: item.status || "New Enquiry"
+            }));
+            localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(mapped));
+            renderSurveyQueue();
+          }
+        }
+      } catch (e) {
+        console.log("Database sync unavailable, using local cache.");
+      }
+    }
+
     function renderSurveyQueue() {
       const list = getStoredEnquiries();
       document.getElementById("queueCountBadge").textContent = list.length;
@@ -1777,6 +1827,12 @@
         localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(list));
         renderSurveyQueue();
         showToast(`Lead marked as "${newStatus}".`);
+
+        fetch("/api/enquiries", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, status: newStatus })
+        }).catch(err => console.log("DB status update error:", err));
       }
     }
 
@@ -1785,6 +1841,10 @@
       localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(list));
       renderSurveyQueue();
       showToast("Enquiry removed from queue.");
+
+      fetch(`/api/enquiries?id=${encodeURIComponent(id)}`, {
+        method: "DELETE"
+      }).catch(err => console.log("DB delete error:", err));
     }
 
     // Tab B: Quick-Brand Customizer Logic
