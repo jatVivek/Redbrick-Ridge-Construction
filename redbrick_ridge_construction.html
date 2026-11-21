@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redbrick & Ridge Construction | UK Extensions, Conversions & Structural Builders</title>
+  
+  <!-- Google Fonts: Space Grotesk (Architectural Display) + Plus Jakarta Sans (Clean UI/Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brandDark: 'var(--primary-dark)',
+            brandAccent: 'var(--accent-color)',
+            brandAccentHover: 'var(--accent-hover)',
+            brandSurface: 'var(--surface-light)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary-dark: #111827;
+      --accent-color: #D97706;
+      --accent-hover: #B45309;
+      --surface-light: #F8FAFC;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--surface-light);
+      color: #1E293B;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Subtle Architectural Blueprint Grid Background */
+    .blueprint-grid {
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+        linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+      background-size: 64px 64px, 64px 64px, 16px 16px, 16px 16px;
+    }
+
+    .blueprint-dark {
+      background-color: var(--primary-dark);
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Custom Scrollbar for horizontal filter pills on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Dynamic Accent Utilities */
+    .bg-accent { background-color: var(--accent-color); }
+    .bg-accent:hover { background-color: var(--accent-hover); }
+    .text-accent { color: var(--accent-color); }
+    .border-accent { border-color: var(--accent-color); }
+    .ring-accent:focus { --tw-ring-color: var(--accent-color); }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-500/20 selection:text-slate-900 pb-20 md:pb-0">
+
+  <!-- ===================================================================== -->
+  <!-- TOP STICKY NAVIGATION BAR                                             -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
+    <!-- Top Trust Strip (Desktop) -->
+    <div class="hidden lg:block bg-slate-900 text-slate-300 text-xs py-1.5 border-b border-slate-800">
+      <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
+        <div class="flex items-center gap-5">
+          <span class="flex items-center gap-1.5 font-medium text-white">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span data-bind="guaranteeText">Full Public Liability Insured • Building Control Signed Off</span>
+          </span>
+          <span class="text-slate-500">|</span>
+          <span data-bind="serviceAreas" class="text-slate-300">Greater Manchester, Cheshire & North West</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span data-bind="yearsExperience" class="text-amber-400 font-semibold">15+ Years UK Building & Structural Work</span>
+          <span class="text-slate-600">|</span>
+          <a id="topEmailLink" href="mailto:quotes@redbrickridge.co.uk" class="hover:text-white transition-colors" data-bind="email">quotes@redbrickridge.co.uk</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+      <!-- Brand Identity -->
+      <a href="#top" class="flex items-center gap-3 group min-w-0">
+        <div id="headerLogoContainer" class="shrink-0"></div>
+        <div class="min-w-0">
+          <div class="font-display font-bold text-base sm:text-lg lg:text-xl tracking-tight text-slate-900 truncate" data-bind="companyName">
+            Redbrick & Ridge Construction
+          </div>
+          <div class="text-[11px] sm:text-xs font-medium text-slate-500 truncate hidden sm:block" data-bind="serviceAreas">
+            Greater Manchester, Cheshire & North West
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
+        <a href="#projects" class="hover:text-slate-950 transition-colors py-2">Services & Projects</a>
+        <a href="#why-us" class="hover:text-slate-950 transition-colors py-2">Why Build With Us</a>
+        <a href="#reviews" class="hover:text-slate-950 transition-colors py-2">Client Reviews</a>
+        <a href="#quote-builder" class="hover:text-slate-950 transition-colors py-2">Site Survey Quote</a>
+        <button onclick="openOwnerModal()" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 px-3 py-1.5 rounded-lg transition-colors text-xs font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Owner Desk
+        </button>
+      </nav>
+
+      <!-- Right Action Badges -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <a id="headerPhoneBadge" href="https://wa.me/447700900618" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-900 text-xs sm:text-sm font-bold transition-all">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span data-bind="formattedPhone">+44 7700 900618</span>
+        </a>
+        <a href="#quote-builder" class="bg-accent text-white font-bold text-xs sm:text-sm px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-xl shadow-sm hover:shadow transition-all whitespace-nowrap">
+          Site Survey
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- EDITORIAL SPLIT-SCREEN HERO SECTION                                   -->
+  <!-- ===================================================================== -->
+  <section id="top" class="blueprint-grid border-b border-slate-200/80 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- Left Column: Editorial Headline, Trust Badges, Dual CTAs -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex flex-wrap items-center gap-2 bg-white border border-slate-200/90 rounded-full px-3.5 py-1.5 shadow-2xs">
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-accent">UK Trade Certified</span>
+            <span class="text-xs font-semibold text-slate-700" data-bind="yearsExperience">15+ Years UK Building & Structural Work</span>
+          </div>
+
+          <h1 class="font-display text-3xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 leading-[1.12] tracking-tight">
+            Extensions, Conversions & Structural Alterations Built To <span class="text-accent underline decoration-2 underline-offset-4">UK Building Regs</span>.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl" data-bind="tagline">
+            Extensions, Garage Conversions, Structural Alterations & Full Home Refurbishments
+          </p>
+
+          <!-- UK Construction Trust Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <div class="bg-white border border-slate-200/90 rounded-xl p-3 flex items-start gap-2.5 shadow-2xs">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-900">£5M Public Liability</div>
+                <div class="text-[11px] text-slate-500">Full structural & site cover</div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-slate-200/90 rounded-xl p-3 flex items-start gap-2.5 shadow-2xs">
+              <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-900">Building Control</div>
+                <div class="text-[11px] text-slate-500">LABC & Private Sign-Off</div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-slate-200/90 rounded-xl p-3 flex items-start gap-2.5 shadow-2xs">
+              <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-900">Fixed-Stage Quotes</div>
+                <div class="text-[11px] text-slate-500">Itemised GBP schedule</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary & WhatsApp CTAs -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <a href="#quote-builder" class="bg-accent text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 min-h-[50px]">
+              <span>Request Free Site Survey</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a id="heroWhatsappBtn" href="https://wa.me/447700900618" target="_blank" rel="noopener" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl border border-slate-800 transition-all flex items-center justify-center gap-2.5 min-h-[50px]">
+              <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+              <span>WhatsApp Drawings / Photos</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Featured Architectural Elevation & Instant Guide Cost Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-2xl border border-slate-200/90 shadow-xl overflow-hidden">
+            <!-- Architectural Spec Banner -->
+            <div class="blueprint-dark p-5 text-white relative">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="px-2.5 py-1 rounded bg-white/10 text-amber-300 font-semibold tracking-wide">FEATURED UK BUILD SPEC</span>
+                <span class="font-mono text-slate-400">DWG-2026-EXT</span>
+              </div>
+              
+              <!-- Custom Crisp SVG Architectural House Extension Elevation -->
+              <div class="bg-slate-950/60 border border-slate-700/80 rounded-xl p-3 my-2">
+                <svg viewBox="0 0 400 155" class="w-full h-36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Dimension Lines -->
+                  <line x1="25" y1="20" x2="230" y2="20" stroke="#64748B" stroke-width="1" stroke-dasharray="3 3"/>
+                  <line x1="230" y1="20" x2="375" y2="20" stroke="#F59E0B" stroke-width="1.2"/>
+                  <text x="125" y="15" fill="#94A3B8" font-size="9" font-family="monospace" text-anchor="middle">EXISTING HOUSE</text>
+                  <text x="302" y="15" fill="#FBBF24" font-size="9" font-family="monospace" text-anchor="middle">NEW REAR EXT (+4.2M)</text>
+                  
+                  <!-- Main Two-Storey House Outline -->
+                  <polygon points="30,68 130,28 230,68" stroke="#E2E8F0" stroke-width="2" fill="#1E293B"/>
+                  <rect x="42" y="68" width="188" height="72" stroke="#E2E8F0" stroke-width="2" fill="#0F172A"/>
+                  <!-- Upstairs Windows -->
+                  <rect x="62" y="80" width="38" height="24" stroke="#94A3B8" stroke-width="1.5" fill="#1E293B"/>
+                  <line x1="81" y1="80" x2="81" y2="104" stroke="#94A3B8" stroke-width="1"/>
+                  <rect x="155" y="80" width="38" height="24" stroke="#94A3B8" stroke-width="1.5" fill="#1E293B"/>
+                  <line x1="174" y1="80" x2="174" y2="104" stroke="#94A3B8" stroke-width="1"/>
+                  
+                  <!-- Structural RSJ Steel Beam Highlight -->
+                  <rect x="225" y="92" width="12" height="8" fill="#F59E0B"/>
+                  <text x="208" y="88" fill="#FBBF24" font-size="8" font-family="monospace" text-anchor="end">203x203 UC RSJ</text>
+
+                  <!-- Single-Storey Extension with Lantern Roof -->
+                  <polygon points="272,82 302,68 332,82" stroke="#F59E0B" stroke-width="1.8" fill="#F59E0B" fill-opacity="0.15"/>
+                  <rect x="230" y="82" width="142" height="58" stroke="#F59E0B" stroke-width="2" fill="#1E293B"/>
+                  <!-- 4-Panel Aluminium Bifold Doors -->
+                  <rect x="246" y="94" width="110" height="46" stroke="#38BDF8" stroke-width="1.5" fill="#0284C7" fill-opacity="0.18"/>
+                  <line x1="273" y1="94" x2="273" y2="140" stroke="#38BDF8" stroke-width="1.2"/>
+                  <line x1="301" y1="94" x2="301" y2="140" stroke="#38BDF8" stroke-width="1.2"/>
+                  <line x1="328" y1="94" x2="328" y2="140" stroke="#38BDF8" stroke-width="1.2"/>
+
+                  <!-- Ground Foundation Line -->
+                  <line x1="15" y1="140" x2="385" y2="140" stroke="#CBD5E1" stroke-width="2"/>
+                  <line x1="230" y1="140" x2="230" y2="150" stroke="#F59E0B" stroke-width="2"/>
+                  <line x1="372" y1="140" x2="372" y2="150" stroke="#F59E0B" stroke-width="2"/>
+                  <text x="301" y="151" fill="#94A3B8" font-size="8" font-family="monospace" text-anchor="middle">1.0M TRENCH FILL FOUNDATIONS</text>
+                </svg>
+              </div>
+
+              <div class="flex items-center justify-between pt-1">
+                <div>
+                  <div class="text-xs text-slate-400">Typical Turnkey Delivery</div>
+                  <div class="font-display font-bold text-base text-white">6 – 10 Weeks Start to Sign-Off</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-slate-400">2026 Guide Ranges</div>
+                  <div class="font-display font-bold text-base text-amber-400">£3,200 – £65,000+</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Quick Cost Estimator Widget inside Hero Card -->
+            <div class="p-5 bg-white space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Instant UK Guide Cost Check</span>
+                <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Updated 2026 Rates</span>
+              </div>
+
+              <div>
+                <label for="heroQuickTrade" class="block text-xs font-semibold text-slate-700 mb-1.5">Select Proposed Works:</label>
+                <select id="heroQuickTrade" onchange="syncHeroQuickEstimate()" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 ring-accent">
+                  <option value="extension">Rear / Side House Extension</option>
+                  <option value="garage">Integral / Detached Garage Conversion</option>
+                  <option value="structural">Load-Bearing Wall Removal & RSJ Steel</option>
+                  <option value="rendering">Silicone / K-Rend Exterior Rendering</option>
+                  <option value="kitchen_bath">Full Kitchen or Bathroom Structural Refit</option>
+                  <option value="full_refurb">Full House Renovation & Re-Wire/Plumb</option>
+                </select>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 flex items-center justify-between">
+                <div>
+                  <div class="text-[11px] font-medium text-slate-500">Typical Guide Investment</div>
+                  <div id="heroQuickPrice" class="font-display text-xl font-bold text-slate-900">£28,000 – £52,000</div>
+                </div>
+                <button onclick="jumpToBuilderFromHero()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3.5 py-2.5 rounded-lg transition-colors">
+                  Build Quote →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE TRADE & PROJECT SHOWCASE                                  -->
+  <!-- ===================================================================== -->
+  <section id="projects" class="py-14 sm:py-20 max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-accent mb-2">Multi-Trade Capabilities & Recent Builds</div>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          Projects & Specialist Building Trades
+        </h2>
+      </div>
+      <p class="text-sm text-slate-600 max-w-md">
+        Filter by trade category below. Tap <strong class="text-slate-900">"Price Similar Project"</strong> on any card to pre-load specs into the site survey builder.
+      </p>
+    </div>
+
+    <!-- Filter Pills (Horizontal Swipeable on Mobile) -->
+    <div id="categoryFilterBar" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8">
+      <!-- Rendered dynamically by JS -->
+    </div>
+
+    <!-- Multi-Column Project & Trade Cards Grid -->
+    <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Rendered dynamically by JS -->
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BRAND STORY & PILLARS ("WHY BUILD WITH US")                           -->
+  <!-- ===================================================================== -->
+  <section id="why-us" class="py-14 sm:py-20 bg-white border-y border-slate-200/90">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        
+        <!-- Left Column: Brand Story & Credentials -->
+        <div class="lg:col-span-6 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider">
+            <span>Direct Multi-Trade Principal Contractor</span>
+          </div>
+          
+          <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight" data-bind="brandStoryTitle">
+            Built Properly From The Ground Up — On Schedule & On Budget
+          </h2>
+          
+          <p class="text-slate-600 text-base leading-relaxed" data-bind="brandStoryBody">
+            Founded by time-served UK builders, we take the stress out of home extensions, garage conversions, and structural knock-throughs. From steel RSJ calculations and Building Control inspections to plastering, electrics, and final finishing, one dedicated team manages every trade—keeping sites tidy, timelines transparent, and homeowners updated daily.
+          </p>
+
+          <!-- Key Site Standards Checklist -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div class="flex items-center gap-2.5 text-sm font-semibold text-slate-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Structural Engineer RSJ Calcs</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-sm font-semibold text-slate-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+              <span>NICEIC & Gas Safe Certified</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-sm font-semibold text-slate-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Daily Site Sweep & Dust Control</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-sm font-semibold text-slate-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
+              <span>Written Workmanship Guarantee</span>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <div class="p-4 rounded-xl bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Speak Directly With Our Site Lead</div>
+                <div class="font-display text-lg font-bold text-white mt-0.5" data-bind="formattedPhone">+44 7700 900618</div>
+              </div>
+              <a id="storyWhatsappLink" href="https://wa.me/447700900618" target="_blank" rel="noopener" class="bg-accent text-white text-xs font-bold px-4 py-3 rounded-xl text-center hover:opacity-95 transition-opacity">
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: 3 Core Pillars -->
+        <div id="brandPillarsContainer" class="lg:col-span-6 space-y-4">
+          <!-- Rendered dynamically from config.brandPillars -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- VERIFIED HOMEOWNER REVIEWS                                            -->
+  <!-- ===================================================================== -->
+  <section id="reviews" class="py-14 sm:py-20 max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-accent mb-2">Verified Local Homeowners</div>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          Trusted Across <span data-bind="serviceAreas">Greater Manchester, Cheshire & North West</span>
+        </h2>
+      </div>
+      <div class="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-xl shadow-2xs self-start">
+        <span class="text-amber-500 text-base">★★★★★</span>
+        <span class="text-xs font-bold text-slate-800">5.0 Average Homeowner Rating</span>
+      </div>
+    </div>
+
+    <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Rendered dynamically from config.reviews -->
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE SITE SURVEY & MULTI-TRADE QUOTE BUILDER + LIVE SLIP       -->
+  <!-- ===================================================================== -->
+  <section id="quote-builder" class="py-14 sm:py-20 blueprint-grid border-t border-slate-200">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+      <div class="max-w-2xl mb-10">
+        <div class="text-xs font-bold uppercase tracking-widest text-accent mb-2">No-Obligation Site Visit & Itemised Estimate</div>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          Interactive Site Survey & Guide Quote Builder
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Configure your project scope below to see an instant UK guide budget bracket and generate a formatted job sheet ready for WhatsApp or email dispatch.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT 7 COLUMNS: 4-Step Interactive Builder -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-md p-5 sm:p-8 space-y-8">
+          
+          <!-- STEP 1: Project Type -->
+          <div class="space-y-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-slate-900 text-white font-display font-bold text-xs flex items-center justify-center">01</span>
+              <h3 class="font-display font-bold text-lg text-slate-900">Select Project / Trade Type</h3>
+            </div>
+            <div id="builderTradeOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- STEP 2: Project Scale & Planning Status -->
+          <div class="space-y-4 pt-4 border-t border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-slate-900 text-white font-display font-bold text-xs flex items-center justify-center">02</span>
+              <h3 class="font-display font-bold text-lg text-slate-900">Project Scale & Architectural Plans</h3>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Approximate Scale</label>
+              <div id="builderScaleOptions" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Drawings / Building Regs Status</label>
+              <div id="builderPlanOptions" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Real-Time Guide Budget Bracket Banner -->
+            <div class="bg-slate-900 text-white rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Estimated UK Guide Budget Range</div>
+                <div id="builderLiveBudget" class="font-display text-2xl sm:text-3xl font-bold text-amber-400 mt-0.5">£28,000 – £42,000</div>
+              </div>
+              <div class="text-xs text-slate-300 sm:text-right max-w-[220px]">
+                Subject to free on-site survey, structural specs & material finishes.
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Target Start Window -->
+          <div class="space-y-3 pt-4 border-t border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-slate-900 text-white font-display font-bold text-xs flex items-center justify-center">03</span>
+              <h3 class="font-display font-bold text-lg text-slate-900">Target Start Window</h3>
+            </div>
+            <div id="builderTimelineOptions" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- STEP 4: Customer & Site Details -->
+          <div class="space-y-4 pt-4 border-t border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-slate-900 text-white font-display font-bold text-xs flex items-center justify-center">04</span>
+              <h3 class="font-display font-bold text-lg text-slate-900">Site & Homeowner Details</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="custName" class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
+                <input id="custName" type="text" placeholder="e.g. Mark & Claire Thompson" oninput="updateLiveSlip()" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 ring-accent" />
+              </div>
+
+              <div>
+                <label for="custPostcode" class="block text-xs font-bold text-slate-700 mb-1">UK Postcode *</label>
+                <input id="custPostcode" type="text" placeholder="e.g. M20 4BX" oninput="this.value = this.value.toUpperCase(); updateLiveSlip()" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono uppercase text-slate-900 focus:outline-none focus:ring-2 ring-accent" />
+              </div>
+
+              <div>
+                <label for="custPropertyType" class="block text-xs font-bold text-slate-700 mb-1">Property Type</label>
+                <select id="custPropertyType" onchange="updateLiveSlip()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 ring-accent">
+                  <option value="Semi-Detached House">Semi-Detached House</option>
+                  <option value="Detached House">Detached House</option>
+                  <option value="Terraced / End-Terrace">Terraced / End-Terrace</option>
+                  <option value="Bungalow">Bungalow</option>
+                  <option value="Flat / Commercial Unit">Flat / Commercial Unit</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="custVisitPref" class="block text-xs font-bold text-slate-700 mb-1">Preferred Callback / Site Visit</label>
+                <select id="custVisitPref" onchange="updateLiveSlip()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 ring-accent">
+                  <option value="Morning (8am – 12pm)">Morning (8am – 12pm)</option>
+                  <option value="Afternoon (12pm – 5pm)">Afternoon (12pm – 5pm)</option>
+                  <option value="Evening (5pm – 8pm)">Evening (5pm – 8pm)</option>
+                  <option value="Saturday Morning">Saturday Morning</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="custNotes" class="block text-xs font-bold text-slate-700 mb-1">Brief Project Scope Notes (Optional)</label>
+              <textarea id="custNotes" rows="3" placeholder="e.g. Looking to knock through kitchen & dining room (approx 3.8m span) and fit 3-panel bifold doors to rear..." oninput="updateLiveSlip()" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 ring-accent"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT 5 COLUMNS: Live On-Screen Enquiry Slip Preview & Dual Output Actions -->
+        <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-4">
+          <div class="bg-white rounded-2xl border-2 border-slate-900 shadow-xl overflow-hidden">
+            <!-- Job Sheet Header -->
+            <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] font-mono uppercase tracking-widest text-amber-400">Live Site Survey Job Sheet</div>
+                <div class="font-display font-bold text-base" data-bind="companyName">Redbrick & Ridge Construction</div>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-white/10 text-[11px] font-mono text-slate-300" id="slipRefCode">REF-2026</span>
+            </div>
+
+            <!-- Formatted Live Slip Body -->
+            <div class="p-5 bg-slate-50/70">
+              <pre id="liveEnquirySlip" class="whitespace-pre-wrap font-mono text-xs leading-relaxed text-slate-800 bg-white border border-slate-200 rounded-xl p-4 shadow-2xs"></pre>
+            </div>
+
+            <!-- Dual Action Buttons -->
+            <div class="p-5 bg-white border-t border-slate-200 space-y-3">
+              <button onclick="submitSurveyViaWhatsApp()" class="w-full bg-accent text-white font-bold text-sm sm:text-base py-3.5 px-5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 min-h-[48px]">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+                <span>Send Survey Request via WhatsApp</span>
+              </button>
+
+              <button onclick="copyEnquirySlip()" class="w-full bg-slate-100 hover:bg-slate-200/80 text-slate-900 font-bold text-xs sm:text-sm py-3 px-4 rounded-xl border border-slate-200 transition-colors flex items-center justify-center gap-2 min-h-[44px]">
+                <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <span>Copy Enquiry Slip to Clipboard</span>
+              </button>
+
+              <p class="text-[11px] text-center text-slate-500">
+                Saves automatically to the Site Survey Desk & opens WhatsApp with your formatted specification.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="bg-slate-950 text-slate-300 border-t border-slate-800">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-800/80">
+        
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div id="footerLogoContainer"></div>
+            <div>
+              <div class="font-display font-bold text-lg text-white" data-bind="companyName">Redbrick & Ridge Construction</div>
+              <div class="text-xs text-slate-400" data-bind="yearsExperience">15+ Years UK Building & Structural Work</div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-md" data-bind="tagline">
+            Extensions, Garage Conversions, Structural Alterations & Full Home Refurbishments
+          </p>
+          <div class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1.5 rounded-lg">
+            <span>●</span>
+            <span data-bind="guaranteeText">Full Public Liability Insured • Building Control Signed Off</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white">Direct Contact & Coverage</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a id="footerWhatsappLink" href="https://wa.me/447700900618" target="_blank" rel="noopener" class="flex items-center gap-2 text-white font-semibold hover:text-amber-400 transition-colors">
+                <span class="text-emerald-400">WhatsApp / Tel:</span>
+                <span data-bind="formattedPhone">+44 7700 900618</span>
+              </a>
+            </li>
+            <li>
+              <a id="footerEmailLink" href="mailto:quotes@redbrickridge.co.uk" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <span class="text-slate-500">Email:</span>
+                <span data-bind="email">quotes@redbrickridge.co.uk</span>
+              </a>
+            </li>
+            <li class="text-slate-400">
+              <span class="text-slate-500">Service Areas:</span>
+              <span data-bind="serviceAreas">Greater Manchester, Cheshire & North West</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white">Quick Navigation</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#projects" class="hover:text-white transition-colors">Services & Recent Builds</a></li>
+            <li><a href="#why-us" class="hover:text-white transition-colors">Building Control & Standards</a></li>
+            <li><a href="#reviews" class="hover:text-white transition-colors">Verified Client Reviews</a></li>
+            <li><a href="#quote-builder" class="hover:text-white transition-colors">Request Site Survey</a></li>
+            <li class="pt-1">
+              <button onclick="openOwnerModal()" class="text-amber-400 hover:text-amber-300 font-semibold text-xs uppercase tracking-wider flex items-center gap-1.5">
+                <span>🔒 Owner Desk & Brand Cloner</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div>© <span id="currentYear">2026</span> <span data-bind="companyName">Redbrick & Ridge Construction</span>. All rights reserved.</div>
+        <div>UK Building Regulations Compliant • Free Site Surveys</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- MOBILE STICKY BOTTOM QUICK-ACTION BAR (< 768px)                       -->
+  <!-- ===================================================================== -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-3 py-2 grid grid-cols-3 gap-2 shadow-2xl">
+    <a href="#quote-builder" class="bg-accent text-white font-bold text-xs rounded-xl py-2.5 flex items-center justify-center gap-1.5 min-h-[44px]">
+      <span>📋 Site Quote</span>
+    </a>
+    <a id="mobileBarWhatsapp" href="https://wa.me/447700900618" target="_blank" rel="noopener" class="bg-emerald-600 text-white font-bold text-xs rounded-xl py-2.5 flex items-center justify-center gap-1.5 min-h-[44px]">
+      <span>💬 WhatsApp</span>
+    </a>
+    <button onclick="openOwnerModal()" class="bg-slate-800 text-slate-200 font-bold text-xs rounded-xl py-2.5 flex items-center justify-center gap-1.5 min-h-[44px]">
+      <span>🔒 Owner PIN</span>
+    </button>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST NOTIFICATION                                                    -->
+  <!-- ===================================================================== -->
+  <div id="toastBanner" class="fixed top-20 right-4 z-50 transform translate-x-[120%] transition-transform duration-300 max-w-sm bg-slate-900 text-white border border-slate-700 rounded-xl shadow-2xl p-4 flex items-start gap-3">
+    <span id="toastIcon" class="text-emerald-400 text-lg leading-none mt-0.5">✓</span>
+    <div class="text-xs sm:text-sm font-medium leading-snug" id="toastMessage">Action completed.</div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- PIN-PROTECTED OWNER DESK & 1-CLICK BRAND CLONER MODAL                 -->
+  <!-- ===================================================================== -->
+  <div id="ownerModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-xs overflow-y-auto p-3 sm:p-6">
+    <div class="min-h-full flex items-center justify-center">
+      <div class="bg-white w-full max-w-4xl rounded-2xl border border-slate-200 shadow-2xl overflow-hidden my-4">
+        
+        <!-- Modal Top Header -->
+        <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <h3 class="font-display font-bold text-base sm:text-lg">Owner Desk & 60-Second Brand Cloner</h3>
+          </div>
+          <button onclick="closeOwnerModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition-colors" aria-label="Close modal">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- VIEW 1: PIN ENTRY GATE -->
+        <div id="ownerPinGate" class="p-6 sm:p-10 max-w-md mx-auto text-center space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-900 mx-auto flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-xl text-slate-900">Enter Site Owner PIN</h4>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Manage incoming Site Survey enquiries or rebrand this entire site for another UK builder. (Default PIN: <strong class="font-mono text-slate-800">2468</strong>)</p>
+          </div>
+
+          <div class="flex justify-center gap-2">
+            <input id="ownerPinInput" type="password" maxlength="4" inputmode="numeric" placeholder="••••" onkeydown="if(event.key==='Enter') verifyOwnerPin()" class="w-40 text-center font-mono text-2xl tracking-[0.5em] rounded-xl border border-slate-300 py-3 px-4 focus:outline-none focus:ring-2 ring-accent" />
+          </div>
+
+          <div id="pinErrorMsg" class="text-xs font-semibold text-rose-600 hidden">Incorrect PIN. Hint: Default PIN is 2468.</div>
+
+          <!-- Touch Keypad for Mobile Convenience -->
+          <div class="grid grid-cols-3 gap-2 max-w-[240px] mx-auto pt-1">
+            <button type="button" onclick="appendPinDigit('1')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">1</button>
+            <button type="button" onclick="appendPinDigit('2')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">2</button>
+            <button type="button" onclick="appendPinDigit('3')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">3</button>
+            <button type="button" onclick="appendPinDigit('4')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">4</button>
+            <button type="button" onclick="appendPinDigit('5')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">5</button>
+            <button type="button" onclick="appendPinDigit('6')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">6</button>
+            <button type="button" onclick="appendPinDigit('7')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">7</button>
+            <button type="button" onclick="appendPinDigit('8')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">8</button>
+            <button type="button" onclick="appendPinDigit('9')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">9</button>
+            <button type="button" onclick="clearPinInput()" class="py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs">Clear</button>
+            <button type="button" onclick="appendPinDigit('0')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 font-display font-bold text-slate-900">0</button>
+            <button type="button" onclick="verifyOwnerPin()" class="py-2.5 rounded-xl bg-accent text-white font-bold text-xs">Unlock</button>
+          </div>
+        </div>
+
+        <!-- VIEW 2: UNLOCKED OWNER WORKSPACE -->
+        <div id="ownerWorkspace" class="hidden">
+          <!-- Tabs -->
+          <div class="bg-slate-100 px-5 pt-3 border-b border-slate-200 flex items-center gap-2 overflow-x-auto">
+            <button id="tabBtnQueue" onclick="switchOwnerTab('queue')" class="px-4 py-2.5 rounded-t-xl font-bold text-xs sm:text-sm bg-white text-slate-900 border-t border-x border-slate-200 -mb-px">
+              📋 Site Survey Queue (<span id="queueCountBadge">0</span>)
+            </button>
+            <button id="tabBtnBrand" onclick="switchOwnerTab('brand')" class="px-4 py-2.5 rounded-t-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900">
+              🎨 Quick-Brand Customizer (Clone Mode)
+            </button>
+          </div>
+
+          <!-- TAB A: SITE SURVEY QUEUE -->
+          <div id="ownerTabQueue" class="p-5 sm:p-6 space-y-4 max-h-[72vh] overflow-y-auto">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h4 class="font-display font-bold text-lg text-slate-900">Incoming Site Survey Requests</h4>
+                <p class="text-xs text-slate-500">Update job pipeline status or launch a 1-tap WhatsApp follow-up message.</p>
+              </div>
+              <button onclick="resetSampleEnquiries()" class="text-xs font-semibold text-slate-600 hover:text-slate-900 underline self-start">
+                Restore Sample Leads
+              </button>
+            </div>
+
+            <div id="surveyQueueList" class="space-y-3">
+              <!-- Populated dynamically from localStorage -->
+            </div>
+          </div>
+
+          <!-- TAB B: QUICK-BRAND CUSTOMIZER (CLONE MODE) -->
+          <div id="ownerTabBrand" class="hidden p-5 sm:p-6 space-y-5 max-h-[72vh] overflow-y-auto">
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-900">
+              <strong>Clone Mode Active:</strong> Customize company details, logo/monogram, WhatsApp number, and brand accent colour below. Changes persist in <code class="font-mono">localStorage</code> and update the live site immediately.
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Company Name</label>
+                <input id="cfgCompanyName" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number (Digits with Country Code)</label>
+                <input id="cfgWhatsapp" type="text" placeholder="447700900618" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm font-mono" />
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Hero Tagline / Core Services</label>
+                <input id="cfgTagline" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Logo Mode</label>
+                <select id="cfgLogoType" onchange="toggleLogoInputFields()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm">
+                  <option value="monogram">Architectural Monogram + Gable Emblem</option>
+                  <option value="image">Custom Logo Image URL</option>
+                </select>
+              </div>
+
+              <div id="cfgMonogramWrap">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Monogram Initials (2 Letters)</label>
+                <input id="cfgMonogram" type="text" maxlength="2" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm font-display font-bold uppercase" />
+              </div>
+
+              <div id="cfgLogoUrlWrap" class="hidden">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Logo Image URL</label>
+                <input id="cfgLogoUrl" type="url" placeholder="https://example.com/logo.png" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Service Areas</label>
+                <input id="cfgServiceAreas" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Quotes Email</label>
+                <input id="cfgEmail" type="email" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
+              </div>
+
+              <!-- Trade-Ready Accent Swatches + Custom Color Picker -->
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 mb-2">Brand Accent Colour (Trade Swatches or Custom)</label>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <button type="button" onclick="selectAccentSwatch('#D97706')" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold flex items-center gap-1.5 hover:bg-slate-50">
+                    <span class="w-3.5 h-3.5 rounded-full bg-[#D97706]"></span> Construction Amber
+                  </button>
+                  <button type="button" onclick="selectAccentSwatch('#C2410C')" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold flex items-center gap-1.5 hover:bg-slate-50">
+                    <span class="w-3.5 h-3.5 rounded-full bg-[#C2410C]"></span> Brick Terracotta
+                  </button>
+                  <button type="button" onclick="selectAccentSwatch('#0284C7')" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold flex items-center gap-1.5 hover:bg-slate-50">
+                    <span class="w-3.5 h-3.5 rounded-full bg-[#0284C7]"></span> Steel Blue
+                  </button>
+                  <button type="button" onclick="selectAccentSwatch('#059669')" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold flex items-center gap-1.5 hover:bg-slate-50">
+                    <span class="w-3.5 h-3.5 rounded-full bg-[#059669]"></span> Emerald Trade
+                  </button>
+                  <div class="flex items-center gap-2 ml-auto">
+                    <span class="text-xs text-slate-500">Custom:</span>
+                    <input id="cfgAccentColor" type="color" value="#D97706" class="w-9 h-9 rounded cursor-pointer border border-slate-300" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Brand Story Headline</label>
+                <input id="cfgStoryTitle" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Brand Story Narrative</label>
+                <textarea id="cfgStoryBody" rows="3" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm"></textarea>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-200">
+              <button type="button" onclick="resetBrandConfig()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100 text-xs font-bold">
+                Reset Default Brand
+              </button>
+              <button type="button" onclick="saveBrandConfigFromForm()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-accent text-white text-xs sm:text-sm font-bold shadow">
+                Save & Apply Brand
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION SCRIPT                                                    -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * 1. CENTRALIZED CLONE-READY BRAND CONFIGURATION
+     * Edit this object directly OR use the Owner Desk -> Quick-Brand Customizer (PIN: 2468)
+     * to rebrand the entire site for any UK construction/building firm in 60 seconds.
+     */
+    const DEFAULT_BRAND_CONFIG = {
+      companyName: "Redbrick & Ridge Construction",
+      tagline: "Extensions, Garage Conversions, Structural Alterations & Full Home Refurbishments",
+      logoType: "monogram", // "monogram" | "image"
+      monogram: "RR",
+      logoUrl: "",
+      primaryDark: "#111827",
+      accentColor: "#D97706",
+      surfaceLight: "#F8FAFC",
+      whatsappNumber: "447700900618",
+      email: "quotes@redbrickridge.co.uk",
+      serviceAreas: "Greater Manchester, Cheshire & North West",
+      yearsExperience: "15+ Years UK Building & Structural Work",
+      guaranteeText: "Full Public Liability Insured • Building Control Signed Off",
+      brandStoryTitle: "Built Properly From The Ground Up — On Schedule & On Budget",
+      brandStoryBody: "Founded by time-served UK builders, we take the stress out of home extensions, garage conversions, and structural knock-throughs. From steel RSJ calculations and Building Control inspections to plastering, electrics, and final finishing, one dedicated team manages every trade—keeping sites tidy, timelines transparent, and homeowners updated daily.",
+      brandPillars: [
+        {
+          title: "All Trades Under One Roof",
+          desc: "Brickwork, structural steels, roofing, plumbing, plastering & electrics coordinated seamlessly."
+        },
+        {
+          title: "Building Control & Structural Compliance",
+          desc: "Full adherence to UK Building Regulations, structural engineer specs, and sign-off certificates."
+        },
+        {
+          title: "Itemised Fixed-Stage Quotes",
+          desc: "Clear stage-by-stage breakdown with zero hidden extras before a single spade hits the ground."
+        }
+      ],
+      reviews: [
+        {
+          name: "David & Sarah M.",
+          location: "Altrincham, WA14",
+          project: "Rear Single-Storey Kitchen Extension & Bifolds",
+          rating: 5,
+          text: "Kept the site spotless every evening and finished right on the agreed week. Building Control signed everything off without a hitch."
+        },
+        {
+          name: "Gareth P.",
+          location: "Stockport, SK4",
+          project: "Integral Garage Conversion to Home Office & Utility",
+          rating: 5,
+          text: "Turned a cold unused garage into a warm, insulated room in under three weeks. Clear quote from day one."
+        },
+        {
+          name: "Hannah & Liam K.",
+          location: "Didsbury, M20",
+          project: "Load-Bearing Wall Removal, RSJ Beam & Full Knock-Through",
+          rating: 5,
+          text: "Great communication throughout, handled the structural steelwork smoothly, and left our open-plan kitchen ready for fit-out."
+        }
+      ]
+    };
+
+    const STORAGE_KEYS = {
+      BRAND: "uk_builder_brand_config_v1",
+      ENQUIRIES: "uk_builder_enquiries_v1"
+    };
+
+    const OWNER_PIN = "2468";
+
+    // UK Trade & Project Showcase Catalog
+    const PROJECT_CATALOG = [
+      {
+        id: "ext-single",
+        category: "Extensions",
+        builderTradeKey: "extension",
+        defaultScale: "Large / Full Extension",
+        title: "Single-Storey Rear Kitchen Extension",
+        location: "Altrincham, WA14",
+        timeline: "7 – 9 Weeks",
+        guideFrom: "From £28,000",
+        specs: ["1m Trench Fill Foundations", "Cavity Brickwork & Blockwork", "4m Aluminium Bifolds & Velux", "Full First & Second Fix M&E"],
+        svgType: "extension"
+      },
+      {
+        id: "garage-conv",
+        category: "Garage Conversions",
+        builderTradeKey: "garage",
+        defaultScale: "Medium / Standard Conversion",
+        title: "Integral Garage to Habitable Room & Utility",
+        location: "Stockport, SK4",
+        timeline: "2.5 – 3.5 Weeks",
+        guideFrom: "From £8,500",
+        specs: ["DPM & 100mm PIR Floor Insulation", "Brick Infill & UPVC Window", "Plasterboard, Skim & Fire Door", "Building Control Completion Cert"],
+        svgType: "garage"
+      },
+      {
+        id: "rsj-knock",
+        category: "Structural & Knock-Throughs",
+        builderTradeKey: "structural",
+        defaultScale: "Small / Single Room",
+        title: "Load-Bearing Wall Removal & RSJ Steel",
+        location: "Didsbury, M20",
+        timeline: "4 – 7 Days",
+        guideFrom: "From £3,200",
+        specs: ["Acrow Propping & Needle Support", "203x203 UC Structural Steel Beam", "Padstone Installation & Fireline Board", "Plaster Skim & Make Good"],
+        svgType: "structural"
+      },
+      {
+        id: "k-rend",
+        category: "Rendering & Exterior",
+        builderTradeKey: "rendering",
+        defaultScale: "Medium / Standard Conversion",
+        title: "Silicone Thin-Coat & K-Rend External Finish",
+        location: "Wilmslow, SK9",
+        timeline: "1 – 2 Weeks",
+        guideFrom: "From £3,800",
+        specs: ["Full Scaffolding & Bead Protection", "Alkali-Resistant Fibreglass Mesh", "Weatherproof Silicone Topcoat", "Soffits, Fascias & Guttering"],
+        svgType: "rendering"
+      },
+      {
+        id: "full-refurb",
+        category: "Full Refurbishments",
+        builderTradeKey: "full_refurb",
+        defaultScale: "Full Property",
+        title: "Back-to-Brick Home Renovation & Layout Re-Plan",
+        location: "Sale, M33",
+        timeline: "8 – 14 Weeks",
+        guideFrom: "From £18,000",
+        specs: ["Full Strip-Out & Re-Plastering", "Consumer Unit Re-Wire & Combi Boiler", "Kitchen & Bathroom Turnkey Fit", "Joinery, Skirtings & Flooring"],
+        svgType: "refurb"
+      },
+      {
+        id: "ext-double",
+        category: "Extensions",
+        builderTradeKey: "extension",
+        defaultScale: "Full Property",
+        title: "Two-Storey Side & Rear Family Extension",
+        location: "Cheadle Hulme, SK8",
+        timeline: "12 – 16 Weeks",
+        guideFrom: "From £52,000",
+        specs: ["Double-Storey Cavity Masonry", "Pitched Tile Roof Tie-In", "Master Bedroom + En-Suite Above", "Open-Plan Kitchen Diner Below"],
+        svgType: "double_ext"
+      }
+    ];
+
+    const TRADE_CATEGORIES = [
+      "All",
+      "Extensions",
+      "Garage Conversions",
+      "Structural & Knock-Throughs",
+      "Rendering & Exterior",
+      "Full Refurbishments"
+    ];
+
+    // Quote Builder Configuration & Dynamic GBP Brackets
+    const BUILDER_TRADES = [
+      { key: "extension", label: "House Extension (Single / Double)", baseMin: 26000, baseMax: 38000 },
+      { key: "garage", label: "Garage or Loft Conversion", baseMin: 8500, baseMax: 14000 },
+      { key: "structural", label: "Load-Bearing Wall / RSJ Steel", baseMin: 3200, baseMax: 5800 },
+      { key: "rendering", label: "Exterior Rendering & Brickwork", baseMin: 3800, baseMax: 7500 },
+      { key: "kitchen_bath", label: "Kitchen / Bathroom Full Refit", baseMin: 7500, baseMax: 14500 },
+      { key: "full_refurb", label: "Full Property Renovation", baseMin: 18000, baseMax: 35000 }
+    ];
+
+    const SCALE_OPTIONS = [
+      { label: "Small / Single Room", mult: 0.85 },
+      { label: "Medium / Standard Conversion", mult: 1.0 },
+      { label: "Large / Full Extension", mult: 1.35 },
+      { label: "Full Property", mult: 1.85 }
+    ];
+
+    const PLAN_OPTIONS = [
+      "Have Architectural Plans",
+      "Need Design & Build Advice",
+      "Just Exploring Guide Costs"
+    ];
+
+    const TIMELINE_OPTIONS = [
+      "ASAP / Within 1 Month",
+      "1 – 3 Months",
+      "3 – 6 Months",
+      "Planning Ahead"
+    ];
+
+    // Application State
+    let activeConfig = loadBrandConfig();
+    let activeFilterCategory = "All";
+    let builderState = {
+      tradeKey: "extension",
+      scaleLabel: "Large / Full Extension",
+      planStatus: "Have Architectural Plans",
+      timeline: "1 – 3 Months"
+    };
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      document.getElementById("slipRefCode").textContent = "REF-" + Math.floor(1000 + Math.random() * 9000);
+      
+      seedInitialEnquiriesIfEmpty();
+      applyBrandConfigToDOM();
+      renderCategoryPills();
+      renderProjectCards();
+      renderBuilderControls();
+      syncHeroQuickEstimate();
+      updateLiveSlip();
+    });
+
+    // =========================================================================
+    // BRAND CONFIGURATION & CLONE ENGINE
+    // =========================================================================
+    function loadBrandConfig() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEYS.BRAND);
+        if (saved) {
+          return { ...DEFAULT_BRAND_CONFIG, ...JSON.parse(saved) };
+        }
+      } catch (e) {
+        console.warn("Could not read brand config from localStorage:", e);
+      }
+      return { ...DEFAULT_BRAND_CONFIG };
+    }
+
+    function formatUKPhone(rawDigits) {
+      const clean = (rawDigits || "").replace(/\D/g, "");
+      if (clean.startsWith("44") && clean.length >= 12) {
+        return `+44 ${clean.slice(2, 6)} ${clean.slice(6)}`;
+      }
+      return clean ? `+${clean}` : "+44 7700 900618";
+    }
+
+    function darkenHex(hex, percent) {
+      const num = parseInt(hex.replace("#", ""), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.max(0, (num >> 16) - amt);
+      const G = Math.max(0, ((num >> 8) & 0x00FF) - amt);
+      const B = Math.max(0, (num & 0x0000FF) - amt);
+      return "#" + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+    }
+
+    function renderLogoHTML(sizeClass = "w-10 h-10") {
+      if (activeConfig.logoType === "image" && activeConfig.logoUrl.trim()) {
+        return `<img src="${escapeHTML(activeConfig.logoUrl)}" alt="${escapeHTML(activeConfig.companyName)}" onerror="this.onerror=null;this.src='https://placehold.co/80x80/111827/FFFFFF?text=${encodeURIComponent(activeConfig.monogram || 'RR')}';" class="${sizeClass} rounded-xl object-cover border border-slate-200 bg-white" />`;
+      }
+      const initials = (activeConfig.monogram || "RR").slice(0, 2).toUpperCase();
+      return `
+        <div class="${sizeClass} rounded-xl bg-slate-900 text-white flex flex-col items-center justify-center border border-slate-700 shadow-xs relative overflow-hidden">
+          <svg class="w-4 h-1.5 text-amber-400 mb-0.5" viewBox="0 0 24 8" fill="none">
+            <path d="M2 7L12 1.5L22 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="font-display font-bold text-xs sm:text-sm leading-none tracking-wider">${escapeHTML(initials)}</span>
+        </div>
+      `;
+    }
+
+    function applyBrandConfigToDOM() {
+      // Update CSS Custom Properties
+      document.documentElement.style.setProperty("--primary-dark", activeConfig.primaryDark || "#111827");
+      document.documentElement.style.setProperty("--accent-color", activeConfig.accentColor || "#D97706");
+      document.documentElement.style.setProperty("--accent-hover", darkenHex(activeConfig.accentColor || "#D97706", 12));
+      document.documentElement.style.setProperty("--surface-light", activeConfig.surfaceLight || "#F8FAFC");
+
+      document.title = `${activeConfig.companyName} | UK Extensions, Conversions & Builders`;
+
+      const formattedPhone = formatUKPhone(activeConfig.whatsappNumber);
+      const waBaseUrl = `https://wa.me/${(activeConfig.whatsappNumber || "447700900618").replace(/\D/g, "")}`;
+
+      // Bind text nodes
+      document.querySelectorAll("[data-bind]").forEach(el => {
+        const key = el.getAttribute("data-bind");
+        if (key === "formattedPhone") {
+          el.textContent = formattedPhone;
+        } else if (activeConfig[key] !== undefined) {
+          el.textContent = activeConfig[key];
+        }
+      });
+
+      // Render Logos
+      document.getElementById("headerLogoContainer").innerHTML = renderLogoHTML("w-10 h-10 sm:w-11 sm:h-11");
+      document.getElementById("footerLogoContainer").innerHTML = renderLogoHTML("w-11 h-11");
+
+      // Update Links
+      ["headerPhoneBadge", "heroWhatsappBtn", "storyWhatsappLink", "footerWhatsappLink", "mobileBarWhatsapp"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = waBaseUrl;
+      });
+
+      ["topEmailLink", "footerEmailLink"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = `mailto:${activeConfig.email}`;
+      });
+
+      // Render Brand Pillars
+      const pillarsContainer = document.getElementById("brandPillarsContainer");
+      pillarsContainer.innerHTML = (activeConfig.brandPillars || []).map((pillar, idx) => `
+        <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex items-start gap-4 hover:border-slate-300 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 font-display font-bold text-sm flex items-center justify-center shrink-0">
+            0${idx + 1}
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-lg text-slate-900">${escapeHTML(pillar.title)}</h3>
+            <p class="text-sm text-slate-600 mt-1 leading-relaxed">${escapeHTML(pillar.desc)}</p>
+          </div>
+        </div>
+      `).join("");
+
+      // Render Reviews
+      const reviewsGrid = document.getElementById("reviewsGrid");
+      reviewsGrid.innerHTML = (activeConfig.reviews || []).map(rev => `
+        <div class="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-2xs flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="text-amber-500 text-sm tracking-wider">${"★".repeat(rev.rating || 5)}</div>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">Verified Build</span>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">"${escapeHTML(rev.text)}"</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100">
+            <div class="font-display font-bold text-sm text-slate-900">${escapeHTML(rev.name)}</div>
+            <div class="text-xs text-slate-500">${escapeHTML(rev.location)} • <span class="font-medium text-slate-700">${escapeHTML(rev.project)}</span></div>
+          </div>
+        </div>
+      `).join("");
+
+      updateLiveSlip();
+    }
+
+    // =========================================================================
+    // PROJECT & TRADE SHOWCASE
+    // =========================================================================
+    function getProjectCardSVG(type) {
+      const svgs = {
+        extension: `
+          <svg viewBox="0 0 320 110" class="w-full h-28" fill="none">
+            <rect x="20" y="22" width="140" height="72" stroke="#CBD5E1" stroke-width="1.5" fill="#1E293B"/>
+            <polygon points="15,22 90,6 165,22" stroke="#CBD5E1" stroke-width="1.5" fill="#0F172A"/>
+            <rect x="160" y="42" width="135" height="52" stroke="#F59E0B" stroke-width="2" fill="#1E293B"/>
+            <polygon points="195,42 227,30 260,42" stroke="#F59E0B" stroke-width="1.5" fill="#F59E0B" fill-opacity="0.2"/>
+            <rect x="176" y="52" width="102" height="42" stroke="#38BDF8" stroke-width="1.4" fill="#0284C7" fill-opacity="0.18"/>
+            <line x1="210" y1="52" x2="210" y2="94" stroke="#38BDF8"/>
+            <line x1="244" y1="52" x2="244" y2="94" stroke="#38BDF8"/>
+            <line x1="10" y1="94" x2="310" y2="94" stroke="#64748B" stroke-width="2"/>
+          </svg>`,
+        garage: `
+          <svg viewBox="0 0 320 110" class="w-full h-28" fill="none">
+            <polygon points="40,36 160,12 280,36" stroke="#CBD5E1" stroke-width="1.8" fill="#1E293B"/>
+            <rect x="52" y="36" width="216" height="58" stroke="#CBD5E1" stroke-width="1.8" fill="#0F172A"/>
+            <rect x="78" y="48" width="84" height="32" stroke="#38BDF8" stroke-width="1.8" fill="#0284C7" fill-opacity="0.2"/>
+            <line x1="120" y1="48" x2="120" y2="80" stroke="#38BDF8" stroke-width="1.4"/>
+            <rect x="78" y="80" width="84" height="14" stroke="#F59E0B" stroke-width="1.5" fill="#F59E0B" fill-opacity="0.18"/>
+            <rect x="192" y="48" width="44" height="46" stroke="#F59E0B" stroke-width="1.6" fill="#1E293B"/>
+            <line x1="25" y1="94" x2="295" y2="94" stroke="#64748B" stroke-width="2"/>
+          </svg>`,
+        structural: `
+          <svg viewBox="0 0 320 110" class="w-full h-28" fill="none">
+            <rect x="30" y="20" width="260" height="74" stroke="#64748B" stroke-width="1.5" fill="#0F172A"/>
+            <!-- Padstones -->
+            <rect x="42" y="36" width="22" height="14" fill="#94A3B8"/>
+            <rect x="256" y="36" width="22" height="14" fill="#94A3B8"/>
+            <!-- RSJ I-Beam -->
+            <rect x="40" y="26" width="240" height="10" fill="#F59E0B"/>
+            <line x1="40" y1="31" x2="280" y2="31" stroke="#78350F" stroke-width="1.5"/>
+            <text x="160" y="20" fill="#FBBF24" font-size="9" font-family="monospace" text-anchor="middle">CLEAR SPAN RSJ STEEL BEAM</text>
+            <line x1="64" y1="36" x2="64" y2="94" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="256" y1="36" x2="256" y2="94" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="20" y1="94" x2="300" y2="94" stroke="#64748B" stroke-width="2"/>
+          </svg>`,
+        rendering: `
+          <svg viewBox="0 0 320 110" class="w-full h-28" fill="none">
+            <polygon points="45,42 160,14 275,42" stroke="#CBD5E1" stroke-width="1.8" fill="#1E293B"/>
+            <rect x="58" y="42" width="204" height="52" stroke="#F59E0B" stroke-width="2" fill="#F8FAFC" fill-opacity="0.1"/>
+            <rect x="82" y="54" width="42" height="26" stroke="#38BDF8" stroke-width="1.5" fill="#0F172A"/>
+            <rect x="196" y="54" width="42" height="26" stroke="#38BDF8" stroke-width="1.5" fill="#0F172A"/>
+            <rect x="145" y="58" width="30" height="36" stroke="#F59E0B" stroke-width="1.5" fill="#1E293B"/>
+            <text x="160" y="34" fill="#FBBF24" font-size="8.5" font-family="monospace" text-anchor="middle">SILICONE K-REND SYSTEM</text>
+            <line x1="25" y1="94" x2="295" y2="94" stroke="#64748B" stroke-width="2"/>
+          </svg>`,
+        refurb: `
+          <svg viewBox="0 0 320 110" class="w-full h-28" fill="none">
+            <rect x="40" y="18" width="240" height="76" stroke="#CBD5E1" stroke-width="1.8" fill="#0F172A"/>
+            <line x1="160" y1="18" x2="160" y2="94" stroke="#F59E0B" stroke-width="1.8"/>
+            <line x1="40" y1="56" x2="280" y2="56" stroke="#F59E0B" stroke-width="1.8"/>
+            <text x="100" y="40" fill="#94A3B8" font-size="8.5" font-family="monospace" text-anchor="middle">RE-WIRE & PLUMB</text>
+            <text x="220" y="40" fill="#94A3B8" font-size="8.5" font-family="monospace" text-anchor="middle">PLASTER & JOINERY</text>
+            <text x="100" y="78" fill="#38BDF8" font-size="8.5" font-family="monospace" text-anchor="middle">NEW KITCHEN</text>
+            <text x="220" y="78" fill="#FBBF24" font-size="8.5" font-family="monospace" text-anchor="middle">BATHROOM SUITE</text>
+          </svg>`,
+        double_ext: `
+          <svg viewBox="0 0 320 110" class="w-full h-28" fill="none">
+            <polygon points="30,36 115,12 200,36" stroke="#CBD5E1" stroke-width="1.5" fill="#1E293B"/>
+            <rect x="40" y="36" width="150" height="58" stroke="#CBD5E1" stroke-width="1.5" fill="#0F172A"/>
+            <polygon points="190,36 238,20 286,36" stroke="#F59E0B" stroke-width="1.8" fill="#1E293B"/>
+            <rect x="190" y="36" width="90" height="58" stroke="#F59E0B" stroke-width="2" fill="#1E293B"/>
+            <rect x="212" y="44" width="44" height="18" stroke="#38BDF8" stroke-width="1.4" fill="#0284C7" fill-opacity="0.2"/>
+            <rect x="206" y="68" width="56" height="26" stroke="#38BDF8" stroke-width="1.4" fill="#0284C7" fill-opacity="0.2"/>
+            <line x1="15" y1="94" x2="305" y2="94" stroke="#64748B" stroke-width="2"/>
+          </svg>`
+      };
+      return svgs[type] || svgs.extension;
+    }
+
+    function renderCategoryPills() {
+      const bar = document.getElementById("categoryFilterBar");
+      bar.innerHTML = TRADE_CATEGORIES.map(cat => {
+        const isActive = cat === activeFilterCategory;
+        return `
+          <button onclick="setFilterCategory('${cat}')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all min-h-[42px] ${
+            isActive
+              ? "bg-slate-900 text-white shadow-sm"
+              : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+          }">
+            ${cat}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function setFilterCategory(cat) {
+      activeFilterCategory = cat;
+      renderCategoryPills();
+      renderProjectCards();
+    }
+
+    function renderProjectCards() {
+      const grid = document.getElementById("projectsGrid");
+      const filtered = activeFilterCategory === "All"
+        ? PROJECT_CATALOG
+        : PROJECT_CATALOG.filter(p => p.category === activeFilterCategory);
+
+      grid.innerHTML = filtered.map(proj => `
+        <article class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between">
+          <div>
+            <!-- Architectural Graphic Header -->
+            <div class="blueprint-dark p-4 border-b border-slate-800">
+              <div class="flex items-center justify-between text-[11px] mb-1">
+                <span class="px-2 py-0.5 rounded bg-white/10 text-amber-300 font-semibold">${escapeHTML(proj.category)}</span>
+                <span class="text-slate-400 font-mono">${escapeHTML(proj.location)}</span>
+              </div>
+              ${getProjectCardSVG(proj.svgType)}
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-5 space-y-3">
+              <h3 class="font-display font-bold text-lg text-slate-900 leading-snug">${escapeHTML(proj.title)}</h3>
+              
+              <div class="flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2.5">
+                <div>
+                  <div class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Guide Budget</div>
+                  <div class="font-display font-bold text-base text-slate-900">${escapeHTML(proj.guideFrom)}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Est. Schedule</div>
+                  <div class="text-xs font-bold text-slate-800">${escapeHTML(proj.timeline)}</div>
+                </div>
+              </div>
+
+              <ul class="space-y-1.5 pt-1">
+                ${proj.specs.map(spec => `
+                  <li class="flex items-center gap-2 text-xs text-slate-600">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+                    <span>${escapeHTML(spec)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0">
+            <button onclick="priceSimilarProject('${proj.id}')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 min-h-[44px]">
+              <span>Price Similar Project</span>
+              <span>→</span>
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function priceSimilarProject(projectId) {
+      const proj = PROJECT_CATALOG.find(p => p.id === projectId);
+      if (!proj) return;
+
+      builderState.tradeKey = proj.builderTradeKey;
+      builderState.scaleLabel = proj.defaultScale;
+
+      const notesEl = document.getElementById("custNotes");
+      if (!notesEl.value.trim()) {
+        notesEl.value = `Interested in a similar build to: ${proj.title} (${proj.guideFrom}).`;
+      }
+
+      renderBuilderControls();
+      updateLiveSlip();
+
+      const builderSection = document.getElementById("quote-builder");
+      builderSection.scrollIntoView({ behavior: "smooth" });
+      showToast(`Loaded "${proj.title}" into Site Survey Builder.`);
+    }
+
+    // =========================================================================
+    // HERO QUICK ESTIMATE & SITE SURVEY QUOTE BUILDER
+    // =========================================================================
+    function syncHeroQuickEstimate() {
+      const tradeKey = document.getElementById("heroQuickTrade").value;
+      const trade = BUILDER_TRADES.find(t => t.key === tradeKey) || BUILDER_TRADES[0];
+      const minStr = "£" + trade.baseMin.toLocaleString("en-GB");
+      const maxStr = "£" + Math.round(trade.baseMax * 1.35).toLocaleString("en-GB");
+      document.getElementById("heroQuickPrice").textContent = `${minStr} – ${maxStr}`;
+    }
+
+    function jumpToBuilderFromHero() {
+      const tradeKey = document.getElementById("heroQuickTrade").value;
+      builderState.tradeKey = tradeKey;
+      renderBuilderControls();
+      updateLiveSlip();
+      document.getElementById("quote-builder").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function calculateCurrentBudgetRange() {
+      const trade = BUILDER_TRADES.find(t => t.key === builderState.tradeKey) || BUILDER_TRADES[0];
+      const scale = SCALE_OPTIONS.find(s => s.label === builderState.scaleLabel) || SCALE_OPTIONS[1];
+      
+      const minVal = Math.round((trade.baseMin * scale.mult) / 500) * 500;
+      const maxVal = Math.round((trade.baseMax * scale.mult) / 500) * 500;
+
+      return `£${minVal.toLocaleString("en-GB")} – £${maxVal.toLocaleString("en-GB")}`;
+    }
+
+    function renderBuilderControls() {
+      // Step 1: Trade Options
+      document.getElementById("builderTradeOptions").innerHTML = BUILDER_TRADES.map(t => {
+        const active = t.key === builderState.tradeKey;
+        return `
+          <button type="button" onclick="selectBuilderTrade('${t.key}')" class="text-left p-3.5 rounded-xl border text-xs sm:text-sm font-bold transition-all min-h-[48px] flex items-center justify-between ${
+            active
+              ? "border-slate-900 bg-slate-900 text-white shadow-xs"
+              : "border-slate-200 bg-slate-50/70 text-slate-800 hover:border-slate-300 hover:bg-white"
+          }">
+            <span>${escapeHTML(t.label)}</span>
+            <span class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${active ? "border-amber-400 bg-amber-400 text-slate-950" : "border-slate-300"}">
+              ${active ? "✓" : ""}
+            </span>
+          </button>
+        `;
+      }).join("");
+
+      // Step 2a: Scale Options
+      document.getElementById("builderScaleOptions").innerHTML = SCALE_OPTIONS.map(s => {
+        const active = s.label === builderState.scaleLabel;
+        return `
+          <button type="button" onclick="selectBuilderScale('${s.label}')" class="p-2.5 rounded-xl border text-xs font-bold text-center transition-all min-h-[44px] ${
+            active
+              ? "border-accent bg-amber-50 text-slate-900 ring-1 ring-amber-500"
+              : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+          }">
+            ${escapeHTML(s.label)}
+          </button>
+        `;
+      }).join("");
+
+      // Step 2b: Planning Status
+      document.getElementById("builderPlanOptions").innerHTML = PLAN_OPTIONS.map(p => {
+        const active = p === builderState.planStatus;
+        return `
+          <button type="button" onclick="selectBuilderPlan('${p}')" class="p-2.5 rounded-xl border text-xs font-bold text-center transition-all min-h-[44px] ${
+            active
+              ? "border-accent bg-amber-50 text-slate-900 ring-1 ring-amber-500"
+              : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+          }">
+            ${escapeHTML(p)}
+          </button>
+        `;
+      }).join("");
+
+      // Step 3: Timeline
+      document.getElementById("builderTimelineOptions").innerHTML = TIMELINE_OPTIONS.map(tl => {
+        const active = tl === builderState.timeline;
+        return `
+          <button type="button" onclick="selectBuilderTimeline('${tl}')" class="p-2.5 rounded-xl border text-xs font-bold text-center transition-all min-h-[44px] ${
+            active
+              ? "border-slate-900 bg-slate-900 text-white"
+              : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+          }">
+            ${escapeHTML(tl)}
+          </button>
+        `;
+      }).join("");
+
+      document.getElementById("builderLiveBudget").textContent = calculateCurrentBudgetRange();
+    }
+
+    function selectBuilderTrade(key) {
+      builderState.tradeKey = key;
+      renderBuilderControls();
+      updateLiveSlip();
+    }
+
+    function selectBuilderScale(label) {
+      builderState.scaleLabel = label;
+      renderBuilderControls();
+      updateLiveSlip();
+    }
+
+    function selectBuilderPlan(plan) {
+      builderState.planStatus = plan;
+      renderBuilderControls();
+      updateLiveSlip();
+    }
+
+    function selectBuilderTimeline(tl) {
+      builderState.timeline = tl;
+      renderBuilderControls();
+      updateLiveSlip();
+    }
+
+    function buildFormattedEnquirySlip() {
+      const trade = BUILDER_TRADES.find(t => t.key === builderState.tradeKey) || BUILDER_TRADES[0];
+      const budget = calculateCurrentBudgetRange();
+      const name = document.getElementById("custName").value.trim() || "[Homeowner Name]";
+      const postcode = document.getElementById("custPostcode").value.trim().toUpperCase() || "[UK Postcode]";
+      const propType = document.getElementById("custPropertyType").value;
+      const visitPref = document.getElementById("custVisitPref").value;
+      const notes = document.getElementById("custNotes").value.trim() || "Standard site survey & itemised quote requested.";
+      const refCode = document.getElementById("slipRefCode").textContent;
+
+      return [
+        `SITE SURVEY & QUOTE ENQUIRY (${refCode})`,
+        `To: ${activeConfig.companyName}`,
+        `----------------------------------------`,
+        `PROJECT: ${trade.label}`,
+        `SCALE: ${builderState.scaleLabel}`,
+        `PLANS STATUS: ${builderState.planStatus}`,
+        `GUIDE BUDGET: ${budget}`,
+        `TARGET START: ${builderState.timeline}`,
+        `----------------------------------------`,
+        `CLIENT: ${name}`,
+        `POSTCODE: ${postcode}`,
+        `PROPERTY: ${propType}`,
+        `VISIT PREF: ${visitPref}`,
+        `SCOPE NOTES: ${notes}`
+      ].join("\n");
+    }
+
+    function updateLiveSlip() {
+      document.getElementById("liveEnquirySlip").textContent = buildFormattedEnquirySlip();
+    }
+
+    function submitSurveyViaWhatsApp() {
+      const name = document.getElementById("custName").value.trim();
+      const postcode = document.getElementById("custPostcode").value.trim().toUpperCase();
+
+      if (!name) {
+        document.getElementById("custName").focus();
+        showToast("Please enter your Full Name before sending.", true);
+        return;
+      }
+      if (!postcode) {
+        document.getElementById("custPostcode").focus();
+        showToast("Please enter your UK Postcode so we can confirm coverage.", true);
+        return;
+      }
+
+      const trade = BUILDER_TRADES.find(t => t.key === builderState.tradeKey) || BUILDER_TRADES[0];
+      const slipText = buildFormattedEnquirySlip();
+
+      // Save to localStorage for Owner Desk
+      const newLead = {
+        id: "LEAD-" + Date.now(),
+        createdAt: new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }),
+        name,
+        postcode,
+        propertyType: document.getElementById("custPropertyType").value,
+        tradeLabel: trade.label,
+        scaleLabel: builderState.scaleLabel,
+        planStatus: builderState.planStatus,
+        timeline: builderState.timeline,
+        budgetRange: calculateCurrentBudgetRange(),
+        visitPref: document.getElementById("custVisitPref").value,
+        notes: document.getElementById("custNotes").value.trim() || "No extra notes provided.",
+        status: "New Enquiry"
+      };
+
+      const enquiries = getStoredEnquiries();
+      enquiries.unshift(newLead);
+      localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(enquiries));
+
+      showToast("Saved to Site Survey Queue & opening WhatsApp...");
+
+      const cleanPhone = (activeConfig.whatsappNumber || "447700900618").replace(/\D/g, "");
+      const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(slipText)}`;
+      window.open(waUrl, "_blank", "noopener");
+    }
+
+    function copyEnquirySlip() {
+      const text = buildFormattedEnquirySlip();
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        showToast("Enquiry slip copied to clipboard!");
+      } catch (err) {
+        showToast("Could not copy automatically. Please select text manually.", true);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    // =========================================================================
+    // PIN-PROTECTED OWNER DESK & 1-CLICK BRAND CLONER
+    // =========================================================================
+    let isOwnerUnlocked = false;
+
+    function openOwnerModal() {
+      document.getElementById("ownerModal").classList.remove("hidden");
+      document.getElementById("pinErrorMsg").classList.add("hidden");
+      if (isOwnerUnlocked) {
+        showOwnerWorkspace();
+      } else {
+        document.getElementById("ownerPinGate").classList.remove("hidden");
+        document.getElementById("ownerWorkspace").classList.add("hidden");
+        document.getElementById("ownerPinInput").value = "";
+        setTimeout(() => document.getElementById("ownerPinInput").focus(), 100);
+      }
+    }
+
+    function closeOwnerModal() {
+      document.getElementById("ownerModal").classList.add("hidden");
+    }
+
+    function appendPinDigit(digit) {
+      const input = document.getElementById("ownerPinInput");
+      if (input.value.length < 4) {
+        input.value += digit;
+      }
+      if (input.value.length === 4) {
+        verifyOwnerPin();
+      }
+    }
+
+    function clearPinInput() {
+      document.getElementById("ownerPinInput").value = "";
+      document.getElementById("pinErrorMsg").classList.add("hidden");
+    }
+
+    function verifyOwnerPin() {
+      const val = document.getElementById("ownerPinInput").value.trim();
+      if (val === OWNER_PIN) {
+        isOwnerUnlocked = true;
+        showOwnerWorkspace();
+      } else {
+        document.getElementById("pinErrorMsg").classList.remove("hidden");
+        document.getElementById("ownerPinInput").value = "";
+      }
+    }
+
+    function showOwnerWorkspace() {
+      document.getElementById("ownerPinGate").classList.add("hidden");
+      document.getElementById("ownerWorkspace").classList.remove("hidden");
+      renderSurveyQueue();
+      populateBrandCustomizerForm();
+    }
+
+    function switchOwnerTab(tabName) {
+      const queueTab = document.getElementById("ownerTabQueue");
+      const brandTab = document.getElementById("ownerTabBrand");
+      const btnQueue = document.getElementById("tabBtnQueue");
+      const btnBrand = document.getElementById("tabBtnBrand");
+
+      if (tabName === "queue") {
+        queueTab.classList.remove("hidden");
+        brandTab.classList.add("hidden");
+        btnQueue.className = "px-4 py-2.5 rounded-t-xl font-bold text-xs sm:text-sm bg-white text-slate-900 border-t border-x border-slate-200 -mb-px";
+        btnBrand.className = "px-4 py-2.5 rounded-t-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900";
+        renderSurveyQueue();
+      } else {
+        queueTab.classList.add("hidden");
+        brandTab.classList.remove("hidden");
+        btnBrand.className = "px-4 py-2.5 rounded-t-xl font-bold text-xs sm:text-sm bg-white text-slate-900 border-t border-x border-slate-200 -mb-px";
+        btnQueue.className = "px-4 py-2.5 rounded-t-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900";
+        populateBrandCustomizerForm();
+      }
+    }
+
+    // Tab A: Survey Queue Logic
+    function seedInitialEnquiriesIfEmpty() {
+      const existing = localStorage.getItem(STORAGE_KEYS.ENQUIRIES);
+      if (!existing) {
+        const samples = [
+          {
+            id: "LEAD-101",
+            createdAt: "19 Nov 2026",
+            name: "Claire & Tom Henderson",
+            postcode: "WA15 8PQ",
+            propertyType: "Semi-Detached House",
+            tradeLabel: "House Extension (Single / Double)",
+            scaleLabel: "Large / Full Extension",
+            planStatus: "Have Architectural Plans",
+            timeline: "1 – 3 Months",
+            budgetRange: "£35,000 – £51,500",
+            visitPref: "Saturday Morning",
+            notes: "4m single-storey rear wrap-around with structural steel and roof lantern. Plans approved.",
+            status: "Site Visit Booked"
+          },
+          {
+            id: "LEAD-102",
+            createdAt: "20 Nov 2026",
+            name: "Richard Patel",
+            postcode: "SK7 2NR",
+            propertyType: "Detached House",
+            tradeLabel: "Garage or Loft Conversion",
+            scaleLabel: "Medium / Standard Conversion",
+            planStatus: "Need Design & Build Advice",
+            timeline: "ASAP / Within 1 Month",
+            budgetRange: "£8,500 – £14,000",
+            visitPref: "Evening (5pm – 8pm)",
+            notes: "Converting double integral garage half into gym and half utility with new front window.",
+            status: "New Enquiry"
+          }
+        ];
+        localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(samples));
+      }
+    }
+
+    function resetSampleEnquiries() {
+      localStorage.removeItem(STORAGE_KEYS.ENQUIRIES);
+      seedInitialEnquiriesIfEmpty();
+      renderSurveyQueue();
+      showToast("Sample site survey leads restored.");
+    }
+
+    function getStoredEnquiries() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.ENQUIRIES) || "[]");
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderSurveyQueue() {
+      const list = getStoredEnquiries();
+      document.getElementById("queueCountBadge").textContent = list.length;
+      const container = document.getElementById("surveyQueueList");
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center border border-dashed border-slate-300 rounded-xl text-sm text-slate-500">No site survey requests in the queue yet.</div>`;
+        return;
+      }
+
+      const statuses = ["New Enquiry", "Site Visit Booked", "Quote Sent", "Won"];
+      const badgeStyles = {
+        "New Enquiry": "bg-amber-100 text-amber-800 border-amber-200",
+        "Site Visit Booked": "bg-sky-100 text-sky-800 border-sky-200",
+        "Quote Sent": "bg-purple-100 text-purple-800 border-purple-200",
+        "Won": "bg-emerald-100 text-emerald-800 border-emerald-200"
+      };
+
+      container.innerHTML = list.map(lead => {
+        const followUpMsg = `Hi ${lead.name}, thanks for your site survey enquiry with ${activeConfig.companyName} regarding your ${lead.tradeLabel} (${lead.postcode}). When is best for a quick call or site visit?`;
+        const waFollowUpUrl = `https://wa.me/${(activeConfig.whatsappNumber || "447700900618").replace(/\D/g, "")}?text=${encodeURIComponent(followUpMsg)}`;
+
+        return `
+          <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-display font-bold text-base text-slate-900">${escapeHTML(lead.name)}</span>
+                  <span class="font-mono text-xs font-bold bg-white border border-slate-200 px-2 py-0.5 rounded text-slate-800">${escapeHTML(lead.postcode)}</span>
+                  <span class="text-[11px] text-slate-400">${escapeHTML(lead.createdAt)}</span>
+                </div>
+                <div class="text-xs font-semibold text-slate-700 mt-0.5">
+                  ${escapeHTML(lead.tradeLabel)} • <span class="text-accent font-bold">${escapeHTML(lead.budgetRange)}</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <select onchange="updateLeadStatus('${lead.id}', this.value)" class="text-xs font-bold rounded-lg border px-2.5 py-1.5 ${badgeStyles[lead.status] || 'bg-white border-slate-300'}">
+                  ${statuses.map(st => `<option value="${st}" ${st === lead.status ? "selected" : ""}>${st}</option>`).join("")}
+                </select>
+                <button onclick="deleteLead('${lead.id}')" title="Delete lead" class="text-slate-400 hover:text-rose-600 p-1.5 rounded-lg hover:bg-rose-50 transition-colors">
+                  🗑️
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-white border border-slate-200/80 rounded-lg p-2.5">
+              <div><span class="text-slate-400 block">Property:</span><strong>${escapeHTML(lead.propertyType)}</strong></div>
+              <div><span class="text-slate-400 block">Plans:</span><strong>${escapeHTML(lead.planStatus)}</strong></div>
+              <div><span class="text-slate-400 block">Start:</span><strong>${escapeHTML(lead.timeline)}</strong></div>
+              <div><span class="text-slate-400 block">Visit Pref:</span><strong>${escapeHTML(lead.visitPref)}</strong></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+              <p class="text-xs text-slate-600 italic">"${escapeHTML(lead.notes)}"</p>
+              <a href="${waFollowUpUrl}" target="_blank" rel="noopener" class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg text-center transition-colors">
+                💬 WhatsApp Follow-Up
+              </a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function updateLeadStatus(id, newStatus) {
+      const list = getStoredEnquiries();
+      const idx = list.findIndex(item => item.id === id);
+      if (idx !== -1) {
+        list[idx].status = newStatus;
+        localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(list));
+        renderSurveyQueue();
+        showToast(`Lead marked as "${newStatus}".`);
+      }
+    }
+
+    function deleteLead(id) {
+      const list = getStoredEnquiries().filter(item => item.id !== id);
+      localStorage.setItem(STORAGE_KEYS.ENQUIRIES, JSON.stringify(list));
+      renderSurveyQueue();
+      showToast("Enquiry removed from queue.");
+    }
+
+    // Tab B: Quick-Brand Customizer Logic
+    function populateBrandCustomizerForm() {
+      document.getElementById("cfgCompanyName").value = activeConfig.companyName || "";
+      document.getElementById("cfgWhatsapp").value = activeConfig.whatsappNumber || "";
+      document.getElementById("cfgTagline").value = activeConfig.tagline || "";
+      document.getElementById("cfgLogoType").value = activeConfig.logoType || "monogram";
+      document.getElementById("cfgMonogram").value = activeConfig.monogram || "RR";
+      document.getElementById("cfgLogoUrl").value = activeConfig.logoUrl || "";
+      document.getElementById("cfgServiceAreas").value = activeConfig.serviceAreas || "";
+      document.getElementById("cfgEmail").value = activeConfig.email || "";
+      document.getElementById("cfgAccentColor").value = activeConfig.accentColor || "#D97706";
+      document.getElementById("cfgStoryTitle").value = activeConfig.brandStoryTitle || "";
+      document.getElementById("cfgStoryBody").value = activeConfig.brandStoryBody || "";
+      toggleLogoInputFields();
+    }
+
+    function toggleLogoInputFields() {
+      const mode = document.getElementById("cfgLogoType").value;
+      if (mode === "image") {
+        document.getElementById("cfgMonogramWrap").classList.add("hidden");
+        document.getElementById("cfgLogoUrlWrap").classList.remove("hidden");
+      } else {
+        document.getElementById("cfgMonogramWrap").classList.remove("hidden");
+        document.getElementById("cfgLogoUrlWrap").classList.add("hidden");
+      }
+    }
+
+    function selectAccentSwatch(hex) {
+      document.getElementById("cfgAccentColor").value = hex;
+    }
+
+    function saveBrandConfigFromForm() {
+      activeConfig = {
+        ...activeConfig,
+        companyName: document.getElementById("cfgCompanyName").value.trim() || DEFAULT_BRAND_CONFIG.companyName,
+        whatsappNumber: document.getElementById("cfgWhatsapp").value.replace(/\D/g, "") || DEFAULT_BRAND_CONFIG.whatsappNumber,
+        tagline: document.getElementById("cfgTagline").value.trim() || DEFAULT_BRAND_CONFIG.tagline,
+        logoType: document.getElementById("cfgLogoType").value,
+        monogram: (document.getElementById("cfgMonogram").value.trim() || "RR").slice(0, 2).toUpperCase(),
+        logoUrl: document.getElementById("cfgLogoUrl").value.trim(),
+        serviceAreas: document.getElementById("cfgServiceAreas").value.trim() || DEFAULT_BRAND_CONFIG.serviceAreas,
+        email: document.getElementById("cfgEmail").value.trim() || DEFAULT_BRAND_CONFIG.email,
+        accentColor: document.getElementById("cfgAccentColor").value || DEFAULT_BRAND_CONFIG.accentColor,
+        brandStoryTitle: document.getElementById("cfgStoryTitle").value.trim() || DEFAULT_BRAND_CONFIG.brandStoryTitle,
+        brandStoryBody: document.getElementById("cfgStoryBody").value.trim() || DEFAULT_BRAND_CONFIG.brandStoryBody
+      };
+
+      localStorage.setItem(STORAGE_KEYS.BRAND, JSON.stringify(activeConfig));
+      applyBrandConfigToDOM();
+      showToast(`Brand updated to "${activeConfig.companyName}"!`);
+    }
+
+    function resetBrandConfig() {
+      localStorage.removeItem(STORAGE_KEYS.BRAND);
+      activeConfig = { ...DEFAULT_BRAND_CONFIG };
+      populateBrandCustomizerForm();
+      applyBrandConfigToDOM();
+      showToast("Reset to default Redbrick & Ridge Construction brand.");
+    }
+
+    // =========================================================================
+    // UTILITIES
+    // =========================================================================
+    let toastTimer = null;
+    function showToast(msg, isError = false) {
+      const banner = document.getElementById("toastBanner");
+      const icon = document.getElementById("toastIcon");
+      const text = document.getElementById("toastMessage");
+
+      icon.textContent = isError ? "⚠" : "✓";
+      icon.className = isError ? "text-amber-400 text-lg leading-none mt-0.5" : "text-emerald-400 text-lg leading-none mt-0.5";
+      text.textContent = msg;
+
+      banner.classList.remove("translate-x-[120%]");
+      banner.classList.add("translate-x-0");
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.remove("translate-x-0");
+        banner.classList.add("translate-x-[120%]");
+      }, 3600);
+    }
+
+    function escapeHTML(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
